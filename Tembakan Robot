@@ -1,0 +1,54 @@
+// NAMA		: Faa'iz Haikal Hilmi
+// NRP		: 5025221219
+// Jurusan	: Teknik Informatika
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+#define GRAVITASI 10 //10 m/s^2
+#define START_PENGUKURAN 1 //pengukuran dimulai dari 1 meter
+#define SUDUT 45*3.14159/180 //sudut elevasi tembakan
+
+float mencari_V0(int y);
+float speed_dgn_loss(float x);
+
+int main() {
+    float vt;
+  	cin >> vt;
+	if(1 <= vt && vt <= 10)
+		vt -= 1;
+	else if(11 <= vt && vt <= 20)
+		vt -= 3;
+	else if(21 <= vt && vt <= 30)
+		vt -= 5;
+	  
+	int x_max;
+	x_max = (vt*vt*sin(SUDUT*2))/GRAVITASI;
+	float speed = speed_dgn_loss(mencari_V0(x_max));
+
+	cout << x_max << " " << speed << endl;
+	return 0;
+}
+
+float mencari_V0(int y)
+{
+	float speed;
+	speed = pow(y * GRAVITASI / sin(SUDUT*2), 0.5);	
+  	
+	return speed;
+}
+
+float speed_dgn_loss(float x)
+{
+	if(1 <= x && x <= 10)
+		x += 1;
+	else if(11 <= x && x <= 20)
+		x += 3;
+	else if(21 <= x && x <= 30)
+		x += 5;
+
+	return x;
+}
+
